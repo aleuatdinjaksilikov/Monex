@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:monex/core/utils/currency_format_ext.dart';
 import 'package:monex/core/widgets/app_button.dart';
+import 'package:monex/features/contact_detail/widgets/balance_section.dart';
+import 'package:monex/features/contact_detail/widgets/cd_action_buttons.dart';
+import 'package:monex/features/contact_detail/widgets/date_filter_widget.dart';
 
-final List<String> valuesOfFilter = [
-  "Все время",
-  "Сегодня",
-  "Неделя",
-  "Месяц",
-  "Год",
-];
+
 
 class ContactDetailScreen extends StatefulWidget {
   const ContactDetailScreen({super.key});
@@ -21,8 +18,6 @@ class ContactDetailScreen extends StatefulWidget {
 class _ContactDetailScreenState extends State<ContactDetailScreen>
     with TickerProviderStateMixin {
   late final TabController _tabController;
-
-  String dropDownvalue = valuesOfFilter.first;
 
   @override
   void initState() {
@@ -46,93 +41,14 @@ class _ContactDetailScreenState extends State<ContactDetailScreen>
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.green.withValues(alpha: 0.3),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                    crossAxisAlignment: .center,
-                    children: [
-                      Text("ТЕКУЩИЙ ДОЛГ", style: TextStyle(fontSize: 14)),
-                      SizedBox(height: 10),
-                      Text(
-                        153000.toCurrency(symbol: "UZS"),
-                        style: TextStyle(fontSize: 24, fontWeight: .bold),
-                      ),
-                      SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: .center,
-                        children: [
-                          Expanded(
-                            child: AppButton(
-                              onTap: () {},
-                              bacgroundColor: Colors.green.withValues(
-                                alpha: 0.4,
-                              ),
-                              height: 48,
-                              children: [
-                                Icon(Icons.call),
-                                SizedBox(width: 5),
-                                Text("Позвонить"),
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: 5),
-                          Expanded(
-                            child: AppButton(
-                              withBorder: true,
-                              height: 48,
-                              onTap: () {},
-                              bacgroundColor: Colors.white12,
-                              children: [
-                                Icon(Icons.notifications),
-                                SizedBox(width: 5),
-                                Text("Напомнить"),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              child: BalanceSection()
             ),
           ),
 
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(left: 12, right: 12, top: 8),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: AppButton(
-                      onTap: () {},
-                      bacgroundColor: Colors.red.withValues(alpha: 0.5),
-                      children: [
-                        Icon(Icons.add),
-                        SizedBox(width: 5),
-                        Text("Записать в долг"),
-                      ],
-                    ),
-                  ),
-                  SizedBox(width: 5),
-                  Expanded(
-                    child: AppButton(
-                      onTap: () {},
-                      bacgroundColor: Color(0xFFDEEAF7),
-                      children: [
-                        Icon(Icons.task_alt_rounded),
-                        SizedBox(width: 5),
-                        Text("Принять оплату"),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+              child: CDActionButtons()
             ),
           ),
 
@@ -140,35 +56,31 @@ class _ContactDetailScreenState extends State<ContactDetailScreen>
             child: Padding(
               padding: const EdgeInsets.all(12),
               child: Row(
+                crossAxisAlignment: .center,
                 children: [
                   Expanded(
-                    flex: 2,
+                    flex: 3,
                     child: Text(
                       "История операций",
                       style: TextStyle(fontSize: 18, fontWeight: .bold),
                     ),
                   ),
                   Expanded(
-                    flex: 1,
-                    child: DropdownButton<String>(
-                      value: valuesOfFilter.first,
-                      onChanged: (String? value) {
-                        setState(() {
-                          dropDownvalue = value!;
-                        });
-                      },
-                      items: valuesOfFilter.map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value,style: TextStyle(fontWeight: .bold),),
-                        );
-                      }).toList(),
-                    ),
+                    flex: 2,
+                    child: DateFilterWidget()
                   ),
                 ],
               ),
             ),
           ),
+
+          SliverList(delegate: SliverChildBuilderDelegate(
+            (context,index){
+              // return OperationItem();
+            },
+            childCount: 10
+          ))
+        
 
           // SliverPersistentHeader(
           //   pinned: true,
