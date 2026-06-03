@@ -1,0 +1,5 @@
+
+enum DebtType {
+  iOwe,
+  owedToMe
+}
