@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:monex/core/utils/currency_format_ext.dart';
-import 'package:monex/core/widgets/app_button.dart';
 import 'package:monex/features/contact_detail/widgets/balance_section.dart';
 import 'package:monex/features/contact_detail/widgets/cd_action_buttons.dart';
 import 'package:monex/features/contact_detail/widgets/date_filter_widget.dart';
-
-
+import 'package:monex/features/contact_detail/widgets/operation_item.dart';
 
 class ContactDetailScreen extends StatefulWidget {
   const ContactDetailScreen({super.key});
@@ -41,19 +38,23 @@ class _ContactDetailScreenState extends State<ContactDetailScreen>
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: BalanceSection()
+              child: BalanceSection(),
             ),
           ),
 
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(left: 12, right: 12, top: 8),
-              child: CDActionButtons()
+              child: CDActionButtons(),
             ),
           ),
 
-          SliverToBoxAdapter(
-            child: Padding(
+          SliverPersistentHeader(
+            pinned: true,
+            delegate: HistoryOfOperationHeaderDelegate(
+              minHeight: 70,
+              maxHeight: 70,
+              child: Padding(
               padding: const EdgeInsets.all(12),
               child: Row(
                 crossAxisAlignment: .center,
@@ -72,15 +73,14 @@ class _ContactDetailScreenState extends State<ContactDetailScreen>
                 ],
               ),
             ),
+            ),
           ),
 
-          SliverList(delegate: SliverChildBuilderDelegate(
-            (context,index){
-              // return OperationItem();
-            },
-            childCount: 10
-          ))
-        
+          SliverList(
+            delegate: SliverChildBuilderDelegate((context, index) {
+              return OperationItem();
+            }, childCount: 10),
+          ),
 
           // SliverPersistentHeader(
           //   pinned: true,
@@ -125,16 +125,16 @@ class _ContactDetailScreenState extends State<ContactDetailScreen>
   }
 }
 
-class _TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
+class HistoryOfOperationHeaderDelegate extends SliverPersistentHeaderDelegate {
+  final double minHeight;
+  final double maxHeight;
   final Widget child;
 
-  _TabBarSliverDelegate({required this.child});
-
-  @override
-  double get minExtent => 70;
-
-  @override
-  double get maxExtent => 70;
+  HistoryOfOperationHeaderDelegate({
+    required this.minHeight,
+    required this.maxHeight,
+    required this.child,
+  });
 
   @override
   Widget build(
@@ -142,11 +142,19 @@ class _TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
-    return Container(color: Colors.white, child: child);
+    return Container(color: Color.fromARGB(255, 235, 239, 243),child: child,);
   }
 
   @override
-  bool shouldRebuild(covariant _TabBarSliverDelegate oldDelegate) {
-    return false;
+  double get maxExtent => maxHeight;
+
+  @override
+  double get minExtent => minHeight;
+
+  @override
+  bool shouldRebuild(covariant HistoryOfOperationHeaderDelegate oldDelegate) {
+    return maxHeight != oldDelegate.maxHeight ||
+        minHeight != oldDelegate.minHeight ||
+        child != oldDelegate.child;
   }
 }
