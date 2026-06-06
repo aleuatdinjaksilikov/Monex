@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:monex/features/contact_detail/widgets/balance_section.dart';
-import 'package:monex/features/contact_detail/widgets/cd_action_buttons.dart';
-import 'package:monex/features/contact_detail/widgets/date_filter_widget.dart';
-import 'package:monex/features/contact_detail/widgets/operation_item.dart';
+import 'package:monex/features/contact/presentation/contact_detail/widgets/balance_section.dart';
+import 'package:monex/features/contact/presentation/contact_detail/widgets/cd_action_buttons.dart';
+import 'package:monex/features/contact/presentation/contact_detail/widgets/date_filter_widget.dart';
+import 'package:monex/features/contact/presentation/contact_detail/widgets/operation_item.dart';
 
 class ContactDetailScreen extends StatefulWidget {
   const ContactDetailScreen({super.key});

@@ -1,10 +1,10 @@
 import 'package:go_router/go_router.dart';
 import 'package:monex/config/routing/route_paths.dart';
 import 'package:monex/core/widgets/bottom_navigation_scaffold_bar.dart';
-import 'package:monex/features/contact_detail/contact_detail_screen.dart';
-import 'package:monex/features/contacts/contacts_screen.dart';
-import 'package:monex/features/contacts/create_contact/create_contact.dart';
-import 'package:monex/features/create_transaction/create_transaction_screen.dart';
+import 'package:monex/features/contact/presentation/contact_detail/contact_detail_screen.dart';
+import 'package:monex/features/contact/presentation/contact_list/contacts_screen.dart';
+import 'package:monex/features/contact/presentation/contact_list/create_contact/create_contact.dart';
+import 'package:monex/features/debts/create_transaction_screen.dart';
 import 'package:monex/features/home/home_screen.dart';
 import 'package:monex/features/home/utils/debt_type.dart';
 import 'package:monex/features/settings/settings_screen.dart';

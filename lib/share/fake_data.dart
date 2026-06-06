@@ -49,6 +49,48 @@ class FakeData {
       phone: '+998905556677',
       createdAt: DateTime(2024, 3, 20),
     ),
+    Contact(
+      id: 'contact-005',
+      name: 'Тимур Жалолов',
+      phone: '+998905556677',
+      createdAt: DateTime(2024, 3, 20),
+    ),
+    Contact(
+      id: 'contact-005',
+      name: 'Тимур Жалолов',
+      phone: '+998905556677',
+      createdAt: DateTime(2024, 3, 20),
+    ),
+    Contact(
+      id: 'contact-005',
+      name: 'Тимур Жалолов',
+      phone: '+998905556677',
+      createdAt: DateTime(2024, 3, 20),
+    ),
+    Contact(
+      id: 'contact-005',
+      name: 'Тимур Жалолов',
+      phone: '+998905556677',
+      createdAt: DateTime(2024, 3, 20),
+    ),
+    Contact(
+      id: 'contact-005',
+      name: 'Тимур Жалолов',
+      phone: '+998905556677',
+      createdAt: DateTime(2024, 3, 20),
+    ),
+    Contact(
+      id: 'contact-005',
+      name: 'Тимур Жалолов',
+      phone: '+998905556677',
+      createdAt: DateTime(2024, 3, 20),
+    ),
+    Contact(
+      id: 'contact-005',
+      name: 'Тимур Жалолов',
+      phone: '+998905556677',
+      createdAt: DateTime(2024, 3, 20),
+    ),
   ];
 
   static Map<String, Contact> get contactsMap => {

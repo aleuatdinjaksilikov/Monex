@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monex/features/contact_detail/active_debts/active_debts_item.dart';
+import 'package:monex/features/contact/presentation/contact_detail/active_debts/active_debts_item.dart';
 
 class ActiveDebtsScreen extends StatelessWidget {
   const ActiveDebtsScreen({super.key});

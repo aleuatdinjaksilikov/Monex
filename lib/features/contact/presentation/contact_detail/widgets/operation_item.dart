@@ -30,7 +30,7 @@ class OperationItem extends StatelessWidget {
                 ],
               ),
               Spacer(),
-              Text('+5555',style: TextStyle(fontSize: 20,fontWeight: .bold),),
+              Text('+ 5555',style: TextStyle(fontSize: 20,fontWeight: .bold),),
               SizedBox(width: 10,),
               IconButton(onPressed: (){}, icon: Icon(Icons.close))
             ],
